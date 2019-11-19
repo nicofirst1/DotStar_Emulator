@@ -3,7 +3,7 @@ import logging
 import pygame
 from pygame import Rect
 import blinker
-
+import math
 from DotStar_Emulator.emulator.vector2 import Vector2
 from DotStar_Emulator.emulator import config, globals
 from DotStar_Emulator.emulator.gui.widget import Widget
@@ -268,6 +268,14 @@ class DotGridWidget(Widget):
                 index = globals.mapping_data.get(x, y)
                 if index is not None:
                     c, b, g, r = globals.strip_data.get(index)
+                    c/=255
+                    r*=c
+                    g*=c
+                    b*=c
+
+                    r=math.floor(r)
+                    g=math.floor(g)
+                    b=math.floor(b)
                     color = (r, g, b)
                 else:
                     color = bg_color
