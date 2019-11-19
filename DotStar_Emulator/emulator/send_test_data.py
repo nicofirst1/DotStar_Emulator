@@ -77,11 +77,11 @@ class App(object):
     def send(self):
 
         if not self.connection:
-            if os.environ.has_key('DOTSTAR_HOST'):
+            if 'DOTSTAR_HOST' in os.environ:
                 host = os.environ.get('DOTSTAR_HOST')
             else:
                 host = config.get("HOST")
-            if os.environ.has_key('DOTSTAR_PORT'):
+            if 'DOTSTAR_PORT' in os.environ:
                 port = os.environ.get('DOTSTAR_PORT')
             else:
                 port = config.get("PORT")
