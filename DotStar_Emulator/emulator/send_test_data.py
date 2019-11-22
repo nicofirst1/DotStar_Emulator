@@ -17,8 +17,8 @@ class App(object):
 
     data_type = None
 
-    def __init__(self, args):
-        self.args = args
+    def __init__(self, rate):
+        self.rate = rate
         self.mapping_data = MappingData()
 
         self.grid_size = Vector2(config.get("GRID_SIZE"))
@@ -28,24 +28,16 @@ class App(object):
         # data does not include start and end bytes
         self.data = bytearray(size)
         self.connection = None
+        self.stop=False
 
         print("Data Type:", self.data_type)
 
-        if self.args.rate:
-            self.repeat_mode = "rate"
-            self.repeat_rate = float(self.args.rate)
-            print("Repeat Mode: Frequency")
-            print('Frequency Set:', self.repeat_rate)
 
-        else:
-            self.repeat_mode = "loop"
-            if self.args.loop:
-                self.range = range(int(args.loop))
-                print("Repeat Mode: Loop")
-                print("Loops Count:", args.loop)
-            else:
-                print("Repeat Mode: None, send once")
-                self.range = range(1)
+        self.repeat_rate = float(self.rate)
+        print("Repeat Mode: Frequency")
+        print('Frequency Set:', self.repeat_rate)
+
+
 
     def set(self, index, c, b, g, r):
         if index is not None and index < self.pixel_count:
@@ -56,23 +48,17 @@ class App(object):
             self.data[i+3] = r
 
     def run(self):
-        if self.repeat_mode == "loop":
-            try:
-                for i in self.range:
-                    self.on_loop()
-            except KeyboardInterrupt:
-                pass
-        elif self.repeat_mode == "rate":
-            rate = 1.0 / self.repeat_rate
-            try:
-                while True:
-                    time.sleep(rate)
-                    self.on_loop()
-            except KeyboardInterrupt:
-                pass
 
-            if self.connection:
-                self.connection.close()
+        rate = 1.0 / self.repeat_rate
+        try:
+            while not self.stop:
+                time.sleep(rate)
+                self.on_loop()
+        except KeyboardInterrupt:
+            pass
+
+        if self.connection:
+            self.connection.close()
 
     def send(self):
 
