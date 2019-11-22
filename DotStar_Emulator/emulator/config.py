@@ -11,8 +11,8 @@ _DEFAULT = {
     #
     # pygame Configurations
     #
-    "WINDOW_SIZE": (640, 480),
-    # "WINDOW_SIZE": (800, 600),
+    #"WINDOW_SIZE": (640, 480),
+    "WINDOW_SIZE": (800, 600),
     # "FULL_SCREEN": False,
 
     ######################################################################################
@@ -21,7 +21,7 @@ _DEFAULT = {
     #
     # "GRID_SIZE": (16, 24),  # columns, rows
     # "GRID_SIZE": (4, 4),  # columns, rows
-    "GRID_SIZE": (8, 8),  # columns, rows
+    "GRID_SIZE": (64, 1),  # columns, rows
     # "GRID_SIZE": (64, 64),  # columns, rows
     # "GRID_SIZE": (32, 32),  # columns, rows
     # "GRID_SIZE": (3, 2),  # columns, rows
