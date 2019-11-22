@@ -18,7 +18,7 @@ class App(object):
     data_type = None
 
     def __init__(self, rate):
-        self.rate = rate
+        self.rate = 1.0 / rate
         self.mapping_data = MappingData()
 
         self.grid_size = Vector2(config.get("GRID_SIZE"))
@@ -33,9 +33,8 @@ class App(object):
         print("Data Type:", self.data_type)
 
 
-        self.repeat_rate = float(self.rate)
         print("Repeat Mode: Frequency")
-        print('Frequency Set:', self.repeat_rate)
+        print('Delay Set:', self.rate)
 
 
 
@@ -49,10 +48,8 @@ class App(object):
 
     def run(self):
 
-        rate = 1.0 / self.repeat_rate
         try:
             while not self.stop:
-                time.sleep(rate)
                 self.on_loop()
         except KeyboardInterrupt:
             pass
