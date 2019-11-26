@@ -28,7 +28,7 @@ class App(object):
         # data does not include start and end bytes
         self.data = bytearray(size)
         self.connection = None
-        self.stop=False
+        self.is_stopped=False
 
         print("Data Type:", self.data_type)
 
@@ -49,7 +49,7 @@ class App(object):
     def run(self):
 
         try:
-            while not self.stop:
+            while not self.is_stopped:
                 self.on_loop()
         except KeyboardInterrupt:
             pass
