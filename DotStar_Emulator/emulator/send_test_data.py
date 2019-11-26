@@ -18,7 +18,6 @@ class App(object):
     data_type = None
 
     def __init__(self, rate):
-        self.rate = 1.0 / rate
         self.mapping_data = MappingData()
 
         self.grid_size = Vector2(config.get("GRID_SIZE"))
@@ -31,11 +30,6 @@ class App(object):
         self.is_stopped=False
 
         print("Data Type:", self.data_type)
-
-
-        print("Repeat Mode: Frequency")
-        print('Delay Set:', self.rate)
-
 
 
     def set(self, index, c, b, g, r):
