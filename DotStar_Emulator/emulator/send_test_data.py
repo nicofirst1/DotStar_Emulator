@@ -40,13 +40,9 @@ class App(object):
             self.data[i+2] = g
             self.data[i+3] = r
 
-    def run(self):
+    def close_connetcion(self):
 
-        try:
-            while not self.is_stopped:
-                self.on_loop()
-        except KeyboardInterrupt:
-            pass
+
 
         if self.connection:
             self.connection.close()
