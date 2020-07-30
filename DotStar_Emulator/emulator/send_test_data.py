@@ -40,10 +40,7 @@ class App(object):
             self.data[i+2] = g
             self.data[i+3] = r
 
-    def close_connetcion(self):
-
-
-
+    def close(self):
         if self.connection:
             self.connection.close()
 
