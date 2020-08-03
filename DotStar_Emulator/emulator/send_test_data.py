@@ -32,10 +32,10 @@ class App(object):
         print("Data Type:", self.data_type)
 
 
-    def set(self, index, c, b, g, r):
+    def set(self, index, a, b, g, r):
         if index is not None and index < self.pixel_count:
             i = index * 4
-            self.data[i] = c
+            self.data[i] = a
             self.data[i+1] = b
             self.data[i+2] = g
             self.data[i+3] = r
